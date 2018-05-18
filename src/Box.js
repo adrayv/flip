@@ -64,7 +64,7 @@ export default class Box extends React.Component {
   render() {
     return(
       <StylishBox onClick={this.changePose} pose={this.state.position}>
-        <h1>COMING SOON</h1>
+        <h1>COMING SOON.</h1>
         <a target="_blank" href="http://destinraymundo.com"><p>shameless plug</p></a>
       </StylishBox>
     );
