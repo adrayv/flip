@@ -5,7 +5,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Box pose='topLeft'/>
+        <Box pose='topRight'/>
       </div>
     );
   }
