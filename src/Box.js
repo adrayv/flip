@@ -34,6 +34,15 @@ const BoxPoseProps = {
   }
 }
 
+const BoxFlipProps = {
+  on: {
+    scaleX: -1,
+  },
+  off: {
+    scaleX: 1,
+  }
+}
+
 let StylishBox = posed.div(BoxPoseProps);
 StylishBox = styled(StylishBox)`
   width: 50%;
@@ -41,12 +50,32 @@ StylishBox = styled(StylishBox)`
   position: absolute;
 `;
 
+let FlipBox = posed.div(BoxFlipProps);
+FlipBox = styled(FlipBox)`
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  left: ${props => props.left ? '0' : 'auto'};
+  right: ${props => props.right ? '0' : 'auto'};
+  top: ${props => props.top ? '0' : 'auto'};
+  bottom: ${props => props.bottom ? '0' : 'auto'};
+  background-color: ${props => props.pose === 'on' ? props.colorBottom : props.colorTop};
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+let FlipText = styled.p`
+  transform: scaleX(${props => props.flipped === 'on' ? '-1' : '1'});
+`;
+
 export default class Box extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      position: this.props.pose
+      position: this.props.pose,
+      flipped: 'off'
     }
   }
 
@@ -61,12 +90,24 @@ export default class Box extends React.Component {
     });
   }
 
+  changeFlip = () => {
+    this.setState({
+      flipped: (this.state.flipped === 'on') ? 'off' : 'on'
+    });
+  }
+
   render() {
     return(
-      <StylishBox onClick={this.changePose} pose={this.state.position}>
-        <h1>COMING SOON</h1>
-        <a target="_blank" href="http://destinraymundo.com"><p>shameless plug</p></a>
-      </StylishBox>
+      <div>
+        <FlipBox {...this.props} onClick={this.changeFlip} pose={this.state.flipped}>
+          <FlipText flipped={this.state.flipped}>{this.state.flipped === 'on' ? <a rel='noopener noreferrer' target='_blank' href="http://destinraymundo.com"><h1>shameless plug</h1></a> : <h1>COMING SOON</h1>}</FlipText>
+          <FlipText flipped={this.state.flipped}>{this.state.flipped === 'on' ? <span role="img">🙈</span> : <span role="img">👇</span>}</FlipText>
+        </FlipBox>
+        {/* <StylishBox onClick={this.changePose} pose={this.state.position}>
+          <h1>COMING SOON</h1>
+          <a target="_blank" href="http://destinraymundo.com"><p>shameless plug</p></a>
+        </StylishBox> */}
+      </div>
     );
   }
 }

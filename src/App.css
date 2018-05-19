@@ -1,11 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Karla:700,700i');
 
-h1, h2, h3, h4, h5, h6, p {
+h1, h2, h3 {
   font-family: 'Karla';
   color: white;
   font-style: italic;
-  text-align: center;
   padding: 0 10px;
+}
+
+* {
+  text-align: center;
 }
 
 a:link {
