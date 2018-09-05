@@ -1,15 +1,26 @@
 import React, { Component } from 'react';
-import Box from './Box'
+import Text from './Global/Components/Text'
+import Flippable from './Global/Components/Flippable'
+import Card from './Global/Components/Card'
+
+import styled from 'styled-components'
+
+const Container = styled.div`
+	width: 50vw;
+	height: 50vh;
+	background-color: paleturquoise;
+`
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <Box top left colorTop='#AFEEEE' colorBottom='#DB7093'/>
-        <Box top right colorTop='#DB7093' colorBottom='#FFEFD5'/>
-        <Box bottom left colorTop='#FFEFD5' colorBottom='#98FB98'/>
-        <Box bottom right colorTop='#98FB98' colorBottom='#AFEEEE'/>
-      </div>
+		<Container>
+			<Flippable>
+				<Card>
+					<Text lg uppercase white>Hello World</Text>
+				</Card>
+			</Flippable>
+		</Container>
     );
   }
 }
