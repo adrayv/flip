@@ -3,6 +3,9 @@ import Text from './Global/Components/Text'
 import Flippable from './Global/Components/Flippable'
 import Card from './Global/Components/Card'
 
+import { connect } from 'react-redux'
+import * as actions from './actions'
+
 import styled from 'styled-components'
 
 const Container = styled.div`
@@ -15,9 +18,9 @@ class App extends Component {
   render() {
     return (
 		<Container>
-			<Flippable>
+			<Flippable func={this.props.incr}>
 				<Card>
-					<Text lg uppercase white>Hello World</Text>
+					<Text lg uppercase white>Hello World {this.props.testState}</Text>
 				</Card>
 			</Flippable>
 		</Container>
@@ -25,4 +28,16 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+	return {
+		testState: state.test
+	}
+}
+
+const mapDispatchToProps = dispatch => {
+	return {
+		incr: () => dispatch(actions.testAction())
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
