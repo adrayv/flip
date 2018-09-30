@@ -9,28 +9,42 @@ import * as actions from './actions'
 import styled from 'styled-components'
 
 const Container = styled.div`
-	width: 50vw;
-	height: 50vh;
 	background-color: paleturquoise;
 `
 
+const Grid = styled.div`
+	display: grid;
+	grid-template-columns: repeat(5, 100px);
+	grid-template-rows: repeat(5, 100px);
+	grid-gap: 10px;
+`
+
 class App extends Component {
-  render() {
-    return (
-		<Container>
-			<Flippable action={this.props.makeBoard}>
-				<Card>
-					<Text lg uppercase white link>Hello World</Text>
-				</Card>
-			</Flippable>
-		</Container>
-    );
-  }
+	componentWillMount() {
+		this.props.makeBoard()
+	}
+	render() {
+		const flipProps = {
+			Background: Card,
+			frontSide: () => <Text xl uppercase white>Front</Text>,
+			backSide: () => <Text xl uppercase white>Back</Text>,
+			action: () => console.log('FLIPPED') 
+		}
+		return (
+			<Container>
+				<Grid>
+					{
+						this.props.gameBoard && this.props.gameBoard.map((row) => row.map(() =><Flippable {...flipProps} />))
+					}
+				</Grid>
+			</Container>
+		);
+	}
 }
 
 const mapStateToProps = state => {
 	return {
-		testState: state.test
+		gameBoard: state.gameBoard
 	}
 }
 

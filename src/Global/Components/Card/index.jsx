@@ -4,7 +4,7 @@ import styled from 'styled-components'
 const CardHelper = styled.div`
 	width: 100%;
 	height: 100%;
-	background-color: sandybrown;
+	background-color: black;
 	border-radius: 15px;
 	display: grid;
 	grid-template-columns: 1fr;
