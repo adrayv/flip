@@ -27,7 +27,7 @@ export default class Flippable extends React.Component {
 	toggleFlip = () => this.setState({flipped: !this.state.flipped})
 	render() {
 		return(
-			<FlipContainer pose={this.state.flipped ? 'flipped': 'unflipped'} onClick={() => {this.toggleFlip(); if(this.props.func) this.props.func()}}>
+			<FlipContainer pose={this.state.flipped ? 'flipped': 'unflipped'} onClick={() => {this.toggleFlip(); if(this.props.action) this.props.action()}}>
 				{this.props.children}
 			</FlipContainer>
 		)

@@ -18,9 +18,9 @@ class App extends Component {
   render() {
     return (
 		<Container>
-			<Flippable func={this.props.incr}>
+			<Flippable action={this.props.makeBoard}>
 				<Card>
-					<Text lg uppercase white>Hello World {this.props.testState}</Text>
+					<Text lg uppercase white link>Hello World</Text>
 				</Card>
 			</Flippable>
 		</Container>
@@ -36,7 +36,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		incr: () => dispatch(actions.testAction())
+		makeBoard: () => dispatch(actions.makeBoard())
 	}
 }
 

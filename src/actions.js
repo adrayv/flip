@@ -1,5 +1,5 @@
-export const testAction = () => {
+export const makeBoard = () => {
 	return {
-		type: "TEST",
+		type: "MAKE_BOARD"
 	}
 }
